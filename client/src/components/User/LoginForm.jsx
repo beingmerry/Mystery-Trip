@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 export default function LoginForm ({ setUser }) {
+  const [errors, setErrors] = useState(null)
   const [userEmail, setUserEmail] = useState('')
   const [password, setPassword] = useState('')
+  
   function setLoginUser (e) {
     e.preventDefault()
     fetch(`http://localhost:3000/login`, {
@@ -18,10 +20,12 @@ export default function LoginForm ({ setUser }) {
       if (r.ok) {
         r.json().then(data => {
           console.log(data)
+          setUser('test')
         })
       } else {
         r.json().then(data => {
           setErrors(data.errors)
+          console.log(data.errors)
         })
       }
     })
@@ -59,6 +63,7 @@ export default function LoginForm ({ setUser }) {
       >
         Sign in
       </button>
+      <p>{errors && {errors}}</p>
     </form>
   )
 }
