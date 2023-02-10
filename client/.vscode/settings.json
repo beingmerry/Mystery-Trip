@@ -1,5 +1,5 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "numso.prettier-standard-vscode",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "file",
@@ -8,8 +8,5 @@
   },
   "editor.quickSuggestions": {
     "strings": true
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "numso.prettier-standard-vscode"
   }
 }

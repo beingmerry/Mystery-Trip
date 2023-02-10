@@ -28,9 +28,11 @@ Initialization (again) at 11:08 EST, 2023-02-10 -- Ben Merryman
 - [x] -- `npx degit git@github.com:huibizhang/template-vite-react-tailwind-v3.git client`
 - [x] -- Translate TypeScript files to JavaScript (jsx)
 - [x] -- Add back favicon.ico behavior
-  - [ ] -- Using svg from https://openmoji.org/library/emoji-1F52E/
+  - [x] -- Using svg from https://openmoji.org/library/emoji-1F52E/
+- [x] -- Re deployed new JSX based app to Vercel
 - [x] -- Login page roughed out
   - [ ] -- Login page interacting with Rails
+  
 - [x] -- Build router and top bar links
 - [ ] -- Build basic fetches and interactions for Friday MVP
 - [ ] -- 2 roles Trip Taker or Trip Builder
@@ -47,3 +49,7 @@ Initialization (again) at 11:08 EST, 2023-02-10 -- Ben Merryman
 - [ ] -- Get user sessions working FIRST
 - [ ] -- Get trips existing under users and showing when logged in
 - [ ] -- Have Sample DEMO session when clicking on DEMO option to login as demo user (limits access to demo, no create)
+
+## STRETCHING
+
+- [ ] -- Hook up AWS S3 Image Uploader to vercel app https://vercel.com/templates/next.js/aws-s3-image-upload-nextjs
