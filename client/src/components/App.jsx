@@ -3,7 +3,7 @@ import Header from './Header'
 import { Outlet } from 'react-router-dom'
 import Footer from './Footer'
 
-function App () {
+export default function App () {
   const [showDefault, setShowDefault] = useState(false)
 
   return (
@@ -16,5 +16,3 @@ function App () {
     </div>
   )
 }
-
-export default App

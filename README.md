@@ -32,7 +32,8 @@ Initialization (again) at 11:08 EST, 2023-02-10 -- Ben Merryman
 - [x] -- Re deployed new JSX based app to Vercel
 - [x] -- Login page roughed out
   - [ ] -- Login page interacting with Rails
-  
+    - [x] -- SIMPLIFY, removing (Remember Me and Forgot Password)
+    - [ ] -- Switch to Rails, get login working
 - [x] -- Build router and top bar links
 - [ ] -- Build basic fetches and interactions for Friday MVP
 - [ ] -- 2 roles Trip Taker or Trip Builder
@@ -53,3 +54,4 @@ Initialization (again) at 11:08 EST, 2023-02-10 -- Ben Merryman
 ## STRETCHING
 
 - [ ] -- Hook up AWS S3 Image Uploader to vercel app https://vercel.com/templates/next.js/aws-s3-image-upload-nextjs
+- [ ] -- Login with (Remember Me and Forgot Password)
