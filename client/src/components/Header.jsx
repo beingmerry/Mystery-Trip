@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
+import React from 'react'
 
-export default function Header ({ fixed }) {
+export default function Header () {
   return (
-    <nav className='flex items-end justify-between align-middle shadow md:px-2 md:py-2 dark:bg-gray-900'>
+    <nav className='flex items-end justify-between align-middle shadow md:px-2 py-2 dark:bg-gray-900'>
       <div className='self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>
         <Link to='/' className='no-underline inline-flex'>
           <h1 className='hover:scale-150 '>🔮</h1>
