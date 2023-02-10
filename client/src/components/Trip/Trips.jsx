@@ -1,16 +1,9 @@
-import { useEffect, useState } from 'react'
+import React from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 
 export default function Trips () {
-  const [trips, setTrips] = useState([])
-  useEffect(() => {
-    fetch('http://localhost:3000/trips')
-      .then(res => res.json())
-      .then(data => {
-        setTrips(data)
-      })
-  }, [])
   const location = useLocation()
+  console.log(location)
   return (
     <div className='container px-6 py-2 h-auto w-auto'>
       <div className='flex justify-center items-center flex-wrap h-full g-6 text-slate-200'>

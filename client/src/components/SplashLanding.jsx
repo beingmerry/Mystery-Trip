@@ -1,19 +1,10 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import SplashPic from '../assets/Splash_PersonWithBagAtAirport.png'
 import LoginForm from './User/LoginForm'
 
-function errorMap (errors) {
-  return (
-    <ul style={{ color: 'red' }}>
-      {errors.map(error => (
-        <li>{error}</li>
-      ))}
-    </ul>
-  )
-}
+
 
 export default function SplashLanding () {
-  const [errors, setErrors] = useState(null)
   const [user, setUser] = useState(null)
   return (
     <section className='h-auto'>
@@ -30,6 +21,7 @@ export default function SplashLanding () {
           {/* Right Hand Section 2-Column - drops below on media SM */}
           <div className='md:w-8/12 lg:w-5/12 lg:ml-20'>
             <LoginForm handleUser={setUser} />
+            <p>{user && user.name}</p>
             {/* <!-- Divider --> */}
             <div className='flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5'>
               <p className='text-center font-semibold mx-4 mb-0 dark:text-slate-200'>
