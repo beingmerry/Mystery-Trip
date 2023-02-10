@@ -1,16 +1,17 @@
 class Api::V1::UsersController < ApplicationController
-  def create_table
+  def create
     @user = User.create(user_params)
     if @user.valid?
-      render json: { user: UserSerializesr.new(@user) }, status: :created
+      render json: { user: UserSerializer.new(@user) }, status: :created
     else
-      render json: { error: 'Failed to create user' }, status: :unprocessable_entity
+      render json: { errors: @user.errors }, status: :unprocessable_entity
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+    # need to add in email if adding on mailer, cell phone if doing sms
+    params.require(:user).permit(:username, :password, :bio, :avatar)
   end
 end
