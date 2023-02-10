@@ -25,6 +25,10 @@ Initialization (again) at 11:08 EST, 2023-02-10 -- Ben Merryman
 
 "I would really like to deploy the web site first, then build." - Ben Merryman on the first day of the project
 # Frontend ToDo / Status
+- [x] -- `npx degit git@github.com:huibizhang/template-vite-react-tailwind-v3.git client`
+- [x] -- Translate TypeScript files to JavaScript (jsx)
+- [x] -- Add back favicon.ico behavior
+  - [ ] -- Using svg from https://openmoji.org/library/emoji-1F52E/
 - [x] -- Login page roughed out
   - [ ] -- Login page interacting with Rails
 - [x] -- Build router and top bar links
@@ -38,6 +42,8 @@ Initialization (again) at 11:08 EST, 2023-02-10 -- Ben Merryman
     - [ ] -- Build own trips if they "subscribe" to the service
 
 # Backend ToDo / Status
+
+- [x] -- `rails new MysteryTrip --api --database=postgresql`
 - [ ] -- Get user sessions working FIRST
 - [ ] -- Get trips existing under users and showing when logged in
 - [ ] -- Have Sample DEMO session when clicking on DEMO option to login as demo user (limits access to demo, no create)
