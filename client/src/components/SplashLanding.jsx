@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import SplashPic from '../assets/Splash_PersonWithBagAtAirport.png'
 import LoginForm from './User/LoginForm'
-
-
+import SignupForm from './User/SignupForm'
 
 export default function SplashLanding () {
   const [user, setUser] = useState(null)
+
+  const [showSignupForm, setShowSignupForm] = useState(false)
   return (
     <section className='h-auto'>
       <div className='container px-6 h-auto w-auto'>
@@ -20,24 +21,30 @@ export default function SplashLanding () {
           </div>
           {/* Right Hand Section 2-Column - drops below on media SM */}
           <div className='md:w-8/12 lg:w-5/12 lg:ml-20'>
-            <LoginForm handleUser={setUser} />
+            {showSignupForm ? (
+              <SignupForm setUser={setUser} />
+            ) : (
+              <LoginForm setUser={setUser} />
+            )}
             <p>{user && user.name}</p>
             {/* <!-- Divider --> */}
             <div className='flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5'>
               <p className='text-center font-semibold mx-4 mb-0 dark:text-slate-200'>
-                Not a Mystery Tripper yet?
+                {showSignupForm
+                  ? 'Already have an account?'
+                  : 'Not a Mystery Tripper yet?'}
               </p>
             </div>
-            <a
+            <button
               className='px-7 py-3 text-white bg-green-600 hover:bg-green-700 font-medium leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3'
-              href='#!'
+              onClick={() => setShowSignupForm(!showSignupForm)}
               role='button'
               data-mdb-ripple='true'
               data-mdb-ripple-color='light'
             >
               {/* <!-- Register --> */}
-              Register
-            </a>
+              {showSignupForm ? 'Login' : 'Register'}
+            </button>
             <div className='flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5'>
               <p className='text-center font-semibold mx-4 mb-0 dark:text-slate-200'>
                 Want to know a bit more about how it works?
