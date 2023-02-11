@@ -15,6 +15,14 @@ export default function Header () {
         Travel with a twist!
       </h1>
       <div className='dark:text-slate-100 space-x-4 p-1'>
+        {/* <---- Login / Join ----> */}
+        <Link
+          to='/'
+          className='bg-orange-600  hover:bg-orange-700 font-bold py-1 px-3 rounded'
+          
+        >
+          Login / Join!
+        </Link>
         {/* <---- Trips ----> */}
         <Link
           to='/trips'
@@ -25,14 +33,14 @@ export default function Header () {
         {/* <---- Days ----> */}
         <Link
           to='/days'
-          className='bg-slate-600  hover:bg-slate-700 font-bold py-1 px-3 rounded'
+          className='bg-blue-600  hover:bg-blue-700 font-bold py-1 px-3 rounded'
         >
           Days
         </Link>
         {/* <---- Activities ----> */}
         <Link
           to='/activities'
-          className='bg-orange-600  hover:bg-orange-700 font-bold py-1 px-3 rounded'
+          className='bg-blue-600  hover:bg-blue-700 font-bold py-1 px-3 rounded'
         >
           Activities
         </Link>
