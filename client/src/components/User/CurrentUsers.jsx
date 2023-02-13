@@ -4,15 +4,26 @@ import React, { useState, useEffect } from 'react'
 
 export default function CurrentUsers () {
   const [users, setUsers] = useState([])
+
   function getUsers () {
-    fetch('http://localhost:3000/api/v1/users')
-      .then(res => res.json())
-      .then(data => {
-        setUsers(data.users)
-        console.log(data)
-      })
-      .catch(err => console.log(err))
+    const token = localStorage.getItem('jwt')
+    fetch('http://localhost:3000/api/v1/users', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.ok) {
+        res.json().then(data => setUsers(data.users))
+      } else {
+        res.json().then(data => {
+          setUsers(`status: ${data.status}, message: ${data.error}`)
+        })
+      }
+    })
   }
+
   useEffect(() => {
     getUsers()
   }, [])
@@ -27,7 +38,7 @@ export default function CurrentUsers () {
       >
         ⚠️(Testing) Get Fresh Users List
       </button>
-      <div className='relative overflow-x-auto'>
+      <div className='overflow-auto'>
         <table className='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
           <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
             <tr>
@@ -46,20 +57,29 @@ export default function CurrentUsers () {
             </tr>
           </thead>
           <tbody>
-            {users.map(user => (
-              <tr key={user.id}>
-                <td className='px-6 py-4 whitespace-nowrap'>{user.username}</td>
-                <td className='px-6 py-4 whitespace-wrap'>{user.bio}</td>
-                <td className='px-6 py-4 whitespace-nowrap'>{user.id}</td>
-                <td className='px-6 py-4 whitespace-nowrap'>
-                  <img
-                    className='h-12 w-12 rounded-full'
-                    src={user.avatar}
-                    alt=''
-                  />
-                </td>
+            {/* 🎯 Very hacky way to display errors, need to fix */}
+            {typeof users === 'string' ? (
+              <tr>
+                <td>{users}</td>
               </tr>
-            ))}
+            ) : (
+              users.map(user => (
+                <tr key={user.id}>
+                  <td className='px-6 py-4 whitespace-nowrap'>
+                    {user.username}
+                  </td>
+                  <td className='px-6 py-4 whitespace-wrap'>{user.bio}</td>
+                  <td className='px-6 py-4 whitespace-nowrap'>{user.id}</td>
+                  <td className='px-6 py-4 whitespace-nowrap'>
+                    <img
+                      className='h-12 w-12 rounded-full'
+                      src={user.avatar}
+                      alt=''
+                    />
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

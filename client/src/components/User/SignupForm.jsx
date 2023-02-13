@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 
 const testUser = {
-  username: 'sylviawoods',
-  password: 'whatscooking',
-  bio: "Sylvia Woods was an American restaurateur who founded the soul food restaurant Sylvia's in Harlem on Lenox Avenue, New York City in 1962. She published two cookbooks and was an important figure in the community.",
-  avatar:
-    'https://upload.wikimedia.org/wikipedia/commons/4/49/Syvia_of_Sylvia%27s_reaturant_N.Y.C_%28cropped%29.jpg'
+  username: 'ben',
+  password: 'test',
+  bio: "short bio about me",
+  avatar: '/src/assets/ProfilePic_1800x1800_2021_Conshy.jpg'
 }
 
 export default function SignupForm ({ setUser }) {
@@ -42,40 +41,18 @@ export default function SignupForm ({ setUser }) {
     }).then(r => {
       if (r.ok) {
         r.json().then(data => {
-          console.log(data)
-          setUser('test')
+          localStorage.setItem('jwt', data.jwt)
+          setUser(data.user)
         })
       } else {
         r.json().then(data => {
-          setErrors(data.errors)
+          setErrors(data.errors.username[0])
           console.log(data.errors)
         })
       }
     })
   }
-  function testUserCreate (e) {
-    e.preventDefault()
-    fetch('http://localhost:3000/api/v1/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      },
-      body: JSON.stringify({
-        user: {
-          username: 'sylviawoods',
-          password: 'whatscooking',
-          bio: "Sylvia Woods was an American restaurateur who founded the soul food restaurant Sylvia's in Harlem on Lenox Avenue, New York City in 1962. She published two cookbooks and was an important figure in the community.",
-          avatar:
-            'https://upload.wikimedia.org/wikipedia/commons/4/49/Syvia_of_Sylvia%27s_reaturant_N.Y.C_%28cropped%29.jpg'
-        }
-      })
-    })
-      .then(r => r.json())
-      .then(console.log)
-  }
   return (
-    // long term use handleNewUser, currently testing with
     <>
       {/* <!-- Test fill form button --> */}
       <button
@@ -87,7 +64,7 @@ export default function SignupForm ({ setUser }) {
       >
         ⚠️ Test Fill Form ⚠️
       </button>
-      <p>{errors && { errors }}</p>
+      <p className='text-red-500'>{errors !== '' && errors}</p>
       <form onSubmit={e => handleNewUser(e)}>
         {/* <!-- Username input --> */}
         <div className='mb-6'>
@@ -140,7 +117,6 @@ export default function SignupForm ({ setUser }) {
         >
           Create Account
         </button>
-        <p>{errors && { errors }}</p>
       </form>
     </>
   )

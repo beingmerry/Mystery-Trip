@@ -1,45 +1,54 @@
 import React, { useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
 
-export default function LoginForm ({ setUser }) {
+export default function LoginForm () {
+  // Pulling from top level context
+  const [userLoggedIn, setUserLoggedIn] = useOutletContext()
+
+  // Local state
   const [errors, setErrors] = useState(null)
-  const [userEmail, setUserEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  function setLoginUser (e) {
+  // Log in function
+  function handleLoginUser (e) {
     e.preventDefault()
-    fetch(`http://localhost:3000/login`, {
+    fetch(`http://localhost:3000/api/v1/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        userEmail,
-        password
+        user: {
+          username,
+          password
+        }
       })
     }).then(r => {
       if (r.ok) {
         r.json().then(data => {
-          console.log(data)
-          setUser('test')
+          localStorage.setItem('jwt', data.jwt)
+          setUserLoggedIn(true)
         })
       } else {
         r.json().then(data => {
-          setErrors(data.errors)
-          console.log(data.errors)
+          setErrors(data.message)
         })
       }
     })
   }
+
   return (
-    <form onSubmit={e => setLoginUser(e)}>
+    <form onSubmit={e => handleLoginUser(e)}>
       {/* <!-- Email input --> */}
+      <p className='text-slate-200'>LoggedIn? {String(userLoggedIn)}</p>
       <div className='mb-6'>
         <input
           type='text'
-          className='form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+          className='form-control w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
           placeholder='Email address'
-          value={userEmail}
-          onChange={e => setUserEmail(e.target.value)}
+          value={username}
+          onChange={e => setUsername(e.target.value)}
         />
       </div>
 
@@ -63,7 +72,7 @@ export default function LoginForm ({ setUser }) {
       >
         Sign in
       </button>
-      <p>{errors && { errors }}</p>
+      {errors && <p className='text-red-500'>{errors}</p>}
     </form>
   )
 }
