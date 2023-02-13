@@ -8,10 +8,10 @@ export default function App () {
   return (
     <div className='flex flex-col h-screen justify-between '>
       <Header fixed={false} />
-      <div className='flex flex-col h-full w-full align justify-center dark:bg-slate-700 overflow-auto'>
+      <div className='flex flex-col h-full w-full align justify-center dark:bg-slate-700'>
         <Outlet />
 
-        <CurrentUsers />
+        <CurrentUsers className=""/>
       </div>
 
       <Footer />
