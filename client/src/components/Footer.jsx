@@ -1,5 +1,6 @@
 import BenMerrymanProfilePic from '../assets/ProfilePic_1800x1800_2021_Conshy.jpg'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Footer () {
   return (
@@ -23,7 +24,7 @@ export default function Footer () {
         <ul className='flex flex-wrap items-center mb-6 text-gray-500 sm:mb-0 dark:text-gray-400'>
           <li>
             <a
-              href='https://github.com/beingmerry/Mystery-Trip-AWS-Amplify'
+              href='https://github.com/beingmerry/Mystery-Trip'
               className='mr-4 hover:underline md:mr-6 '
               target='_blank'
               rel='noopener noreferrer'
@@ -32,9 +33,9 @@ export default function Footer () {
             </a>
           </li>
           <li>
-            <a href='#' className='mr-4 hover:underline md:mr-6 '>
+            <Link to='tools-and-tech' className='mr-4 hover:underline md:mr-6 '>
               Tools and Skills Used
-            </a>
+            </Link>
           </li>
           <li>
             <a

@@ -36,7 +36,8 @@ Initialization (again) at 11:08 EST, 2023-02-10 -- Ben Merryman
     - [x] -- Switch to Rails, get login working
 - [x] -- Build router and top bar links
 - [x] -- Build basic fetches and interactions for Friday MVP
-- [ ] -- Develop Context for User trackign vs prop passing through outlets
+- [x] -- Develop Context for User trackign vs prop passing through outlets
+  - [x] -- Used OutletContext
 - [ ] -- 2 roles Trip Taker or Trip Builder
   - [ ] -- Trip builder puts together all the trip parts and event triggers for emails / SMS messages
     - [ ] -- Build in event triggers
@@ -49,8 +50,9 @@ Initialization (again) at 11:08 EST, 2023-02-10 -- Ben Merryman
 
 - [x] -- `rails new MysteryTrip --api --database=postgresql`
 - [x] -- Building login / signup page routes - 02-13
-- [ ] -- User creation and login working, but need to  have Authorization on each page, building out context
-- [ ] -- Get user sessions working FIRST
+- [x] -- User creation and login working, but need to  have Authorization on each page, building out context
+  - [x] -- Login working, need to keep authentication server side (has_secure_password, :authorize)
+  - [x] -- Get user sessions working FIRST
 - [ ] -- Get trips existing under users and showing when logged in
 - [ ] -- Have Sample DEMO session when clicking on DEMO option to login as demo user (limits access to demo, no create)
 

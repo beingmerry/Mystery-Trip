@@ -4,6 +4,9 @@ Rails.application.routes.draw do
       resources :users, only: [:create, :index]
       post 'login', to: 'auth#create'
       get 'profile', to: 'users#profile'
+      resources :trips, only: [:index, :create, :show, :update, :destroy]
+      resources :activities
+      resources :days
     end
   end
 end
