@@ -1,18 +1,26 @@
 import React, { useState } from 'react'
+import { useOutletContext, useNavigate } from 'react-router-dom'
 
 const testUser = {
   username: 'ben',
   password: 'test',
-  bio: "short bio about me",
+  bio: 'short bio about me',
   avatar: '/src/assets/ProfilePic_1800x1800_2021_Conshy.jpg'
 }
 
-export default function SignupForm ({ setUser }) {
+export default function SignupForm () {
+  // Pulling from top level context
+  const [setUserLoggedIn] = useOutletContext()
+
+  // Local State
   const [errors, setErrors] = useState(null)
   const [formUser, setFormUser] = useState('')
   const [formEmail, setFormEmail] = useState('')
   const [formAvatar, setFormAvatar] = useState('')
   const [formPassword, setFormPassword] = useState('')
+
+  // Navigation
+  const navigate = useNavigate()
 
   function testUserFill (currentTestUser) {
     setFormUser(currentTestUser.username)
@@ -42,12 +50,12 @@ export default function SignupForm ({ setUser }) {
       if (r.ok) {
         r.json().then(data => {
           localStorage.setItem('jwt', data.jwt)
-          setUser(data.user)
+          setUserLoggedIn(true)
+          navigate('/dashboard')
         })
       } else {
         r.json().then(data => {
           setErrors(data.errors.username[0])
-          console.log(data.errors)
         })
       }
     })

@@ -18,15 +18,39 @@ export default function Header ({ userLoggedIn, setUserLoggedIn }) {
         {/* ⚠️ Need to find a better way of knowing whether logged in */}
         {/* <---- Login / Join OR Logout ----> */}
         {userLoggedIn ? (
-          <button
-            onClick={() => {
-              localStorage.clear()
-              setUserLoggedIn(false)
-            }}
-            className='bg-orange-600  hover:bg-orange-700 font-bold py-1 px-3 rounded'
-          >
-            Logout
-          </button>
+          <>
+            <button
+              onClick={() => {
+                localStorage.clear()
+                setUserLoggedIn(false)
+              }}
+              className='bg-orange-600  hover:bg-orange-700 font-bold py-1 px-3 rounded'
+            >
+              Logout
+            </button>
+
+            {/* <---- Trips ----> */}
+            <Link
+              to='/trips'
+              className='bg-blue-600  hover:bg-blue-700 font-bold py-1 px-3 rounded'
+            >
+              Trips
+            </Link>
+            {/* <---- Days ----> */}
+            <Link
+              to='/days'
+              className='bg-blue-600  hover:bg-blue-700 font-bold py-1 px-3 rounded'
+            >
+              Days
+            </Link>
+            {/* <---- Activities ----> */}
+            <Link
+              to='/activities'
+              className='bg-blue-600  hover:bg-blue-700 font-bold py-1 px-3 rounded'
+            >
+              Activities
+            </Link>
+          </>
         ) : (
           <Link
             to='/'
@@ -35,28 +59,6 @@ export default function Header ({ userLoggedIn, setUserLoggedIn }) {
             Login / Join
           </Link>
         )}
-
-        {/* <---- Trips ----> */}
-        <Link
-          to='/trips'
-          className='bg-blue-600  hover:bg-blue-700 font-bold py-1 px-3 rounded'
-        >
-          Trips
-        </Link>
-        {/* <---- Days ----> */}
-        <Link
-          to='/days'
-          className='bg-blue-600  hover:bg-blue-700 font-bold py-1 px-3 rounded'
-        >
-          Days
-        </Link>
-        {/* <---- Activities ----> */}
-        <Link
-          to='/activities'
-          className='bg-blue-600  hover:bg-blue-700 font-bold py-1 px-3 rounded'
-        >
-          Activities
-        </Link>
       </div>
     </nav>
   )

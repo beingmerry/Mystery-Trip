@@ -5,13 +5,10 @@ import Footer from './Footer'
 import CurrentUsers from './User/CurrentUsers'
 
 export default function App () {
-  const [userLoggedIn, setUserLoggedIn] = React.useState(false)
-  React.useEffect(() => {
-    const user = localStorage.getItem('jwt')
-    if (user) {
-      setUserLoggedIn(true)
-    }
-  }, [])
+  const [userLoggedIn, setUserLoggedIn] = React.useState(
+    !!localStorage.getItem('jwt') || false
+  )
+
   return (
     <div className='flex flex-col h-screen justify-between'>
       <Header userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} />

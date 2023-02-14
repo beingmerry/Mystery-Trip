@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useOutletContext } from 'react-router-dom'
+import { useOutletContext, useNavigate } from 'react-router-dom'
 
 export default function LoginForm () {
   // Pulling from top level context
@@ -9,6 +9,9 @@ export default function LoginForm () {
   const [errors, setErrors] = useState(null)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+
+  // Navigation
+  const navigate = useNavigate()
 
   // Log in function
   function handleLoginUser (e) {
@@ -29,6 +32,8 @@ export default function LoginForm () {
         r.json().then(data => {
           localStorage.setItem('jwt', data.jwt)
           setUserLoggedIn(true)
+
+          navigate('/dashboard')
         })
       } else {
         r.json().then(data => {
