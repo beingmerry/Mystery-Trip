@@ -10,7 +10,7 @@ export default function Dashboard () {
   const [days, setDays] = React.useState([])
 
   React.useEffect(() => {
-    fetch('http://localhost:3000/api/v1/users/profile', {
+    fetch('http://localhost:3000/api/v1/profile', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -20,8 +20,7 @@ export default function Dashboard () {
     }).then(res => {
       if (res.ok) {
         res.json().then(data => {
-          setTrips(data)
-          console.log(data)
+          setCurrentUser(data.user)
         })
       } else {
         res.json().then(errors => {
@@ -55,18 +54,36 @@ export default function Dashboard () {
     <>
       {openGreeting && (
         <div className={greetingClass}>
-          <h1>👋 Hello {}! Welcome to your next adventure 🚢✈️🧳</h1>
+          <h1>
+            👋 Hello {currentUser && <strong>{currentUser.username}</strong>}!
+            Welcome to your next adventure 🚢✈️🧳
+          </h1>
           <button className='text-right' onClick={() => setOpenGreeting(false)}>
             ❌
           </button>
         </div>
       )}
-      <h2>Current Trips</h2>
-      <h2>Current Days</h2>
-      <h2>Current Activities</h2>
+      <div className='p-4 flex flex-col items-center justify-center'>
+        <h2 className='text-orange-400 bg-slate-600 rounded-md text-lg p-3'>
+          Current Trips
+        </h2>
+        <p>The trips that you are planning or invited to will go here</p>
+        <h2 className='text-orange-400 bg-slate-600 rounded-md text-lg p-3'>
+          Current Days
+        </h2>
+        <p>You can always build days with activities</p>
+        <h2 className='text-orange-400 bg-slate-600 rounded-md text-lg p-3'>
+          Current Activities
+        </h2>
+        <p>Or create new activitie</p>
+        <h2 className='text-orange-400 bg-slate-600 rounded-md text-lg p-3'>
+          Friends
+        </h2>
+        <p>Or add new friends</p>
+      </div>
     </>
   )
 }
 
 const greetingClass =
-  'px-2 py-4 flex flex-row justify-between bg-slate-500 text-amber-200 rounded-md font-semibold text-lg'
+  'px-2 py-4 flex flex-row justify-between bg-slate-500 text-amber-200 rounded-md text-lg'

@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import React from 'react'
 
 export default function Header ({ userLoggedIn, setUserLoggedIn }) {
+  // Navigation
+  const navigate = useNavigate()
   return (
     <nav className='flex items-end justify-between align-middle shadow md:px-2 py-2 dark:bg-gray-900'>
       <div className='self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>
@@ -15,7 +17,7 @@ export default function Header ({ userLoggedIn, setUserLoggedIn }) {
         </Link>
       </div>
       <h1 className='hidden md:block self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>
-        Travel with a twist!
+        Travel with a surprise!
       </h1>
       <div className='dark:text-slate-100 space-x-4 p-1'>
         {/* ⚠️ Need to find a better way of knowing whether logged in */}
@@ -54,6 +56,8 @@ export default function Header ({ userLoggedIn, setUserLoggedIn }) {
               onClick={() => {
                 localStorage.clear()
                 setUserLoggedIn(false)
+
+                navigate('/')
               }}
               className='bg-orange-600  hover:bg-orange-700 font-bold py-1 px-3 rounded'
             >

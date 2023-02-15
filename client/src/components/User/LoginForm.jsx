@@ -32,7 +32,6 @@ export default function LoginForm () {
         r.json().then(data => {
           localStorage.setItem('jwt', data.jwt)
           setUserLoggedIn(true)
-
           navigate('/dashboard')
         })
       } else {
@@ -46,7 +45,6 @@ export default function LoginForm () {
   return (
     <form onSubmit={e => handleLoginUser(e)}>
       {/* <!-- Email input --> */}
-      <p className='text-slate-200'>LoggedIn? {String(userLoggedIn)}</p>
       <div className='mb-6'>
         <input
           type='text'

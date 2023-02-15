@@ -10,8 +10,7 @@ const testUser = {
 
 export default function SignupForm () {
   // Pulling from top level context
-  const [setUserLoggedIn] = useOutletContext()
-
+  const [userLoggedIn, setUserLoggedIn] = useOutletContext()
   // Local State
   const [errors, setErrors] = useState(null)
   const [formUser, setFormUser] = useState('')
@@ -51,7 +50,7 @@ export default function SignupForm () {
         r.json().then(data => {
           localStorage.setItem('jwt', data.jwt)
           setUserLoggedIn(true)
-          navigate('/dashboard')
+          navigate('dashboard')
         })
       } else {
         r.json().then(data => {

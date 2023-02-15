@@ -14,7 +14,6 @@ export default function App () {
       <Header userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} />
       <div className="bg-[url('./img/topography.svg')] flex-1 flex-col w-full h-fit align-top justify-center dark:bg-slate-700">
         <Outlet context={[userLoggedIn, setUserLoggedIn]} />
-        <p>userLoggedIn: {String(userLoggedIn)}</p>
         <CurrentUsers className='flex' />
       </div>
 
