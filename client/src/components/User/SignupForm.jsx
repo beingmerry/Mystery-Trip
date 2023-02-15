@@ -4,8 +4,8 @@ import { useOutletContext, useNavigate } from 'react-router-dom'
 const testUser = {
   username: 'ben',
   password: 'test',
-  bio: 'short bio about me',
-  avatar: '/src/assets/ProfilePic_1800x1800_2021_Conshy.jpg'
+  email: 'ben.test@domain.tld',
+  location: 'Philadelphia, PA'
 }
 
 export default function SignupForm () {
@@ -15,7 +15,7 @@ export default function SignupForm () {
   const [errors, setErrors] = useState(null)
   const [formUser, setFormUser] = useState('')
   const [formEmail, setFormEmail] = useState('')
-  const [formAvatar, setFormAvatar] = useState('')
+  const [formLocation, setFormLocation] = useState('')
   const [formPassword, setFormPassword] = useState('')
 
   // Navigation
@@ -23,8 +23,8 @@ export default function SignupForm () {
 
   function testUserFill (currentTestUser) {
     setFormUser(currentTestUser.username)
-    setFormEmail(currentTestUser.bio)
-    setFormAvatar(currentTestUser.avatar)
+    setFormEmail(currentTestUser.email)
+    setFormLocation(currentTestUser.location)
     setFormPassword(currentTestUser.password)
   }
   function handleNewUser (e) {
@@ -33,8 +33,8 @@ export default function SignupForm () {
     const newUser = {
       user: {
         username: formUser,
-        bio: formEmail,
-        avatar: formAvatar,
+        email: formEmail,
+        location: formLocation,
         password: formPassword
       }
     }
@@ -88,7 +88,7 @@ export default function SignupForm () {
           <input
             type='text'
             className='form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
-            placeholder='Email address {bio for testing}'
+            placeholder='Email address'
             value={formEmail}
             onChange={e => setFormEmail(e.target.value)}
           />
@@ -98,9 +98,9 @@ export default function SignupForm () {
           <input
             type='text'
             className='form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
-            placeholder='Profile Pic {Avatar for testing}'
-            value={formAvatar}
-            onChange={e => setFormAvatar(e.target.value)}
+            placeholder='Location'
+            value={formLocation}
+            onChange={e => setFormLocation(e.target.value)}
           />
         </div>
 

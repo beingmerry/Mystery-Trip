@@ -14,7 +14,7 @@ class Api::V1::UsersController < ApplicationController
 
   # POST /signup, create new user
   def create
-    @user = User.create(user_params)
+    @user = User.create(user_params.merge(avatar: './src/avatars/avatar_1.png'))
     if @user.valid?
       # Below line for authentication
       @token = encode_token(user_id: @user.id)
@@ -28,6 +28,6 @@ class Api::V1::UsersController < ApplicationController
 
   def user_params
     # need to add in email if adding on mailer, cell phone if doing sms
-    params.require(:user).permit(:username, :password, :bio, :avatar)
+    params.require(:user).permit(:username, :password, :location, :email)
   end
 end
