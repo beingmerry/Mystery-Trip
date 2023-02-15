@@ -4,10 +4,12 @@ export default function TripList () {
   const [trips, setTrips] = useState([])
 
   function deleteTrip (id) {
-    fetch(`http://localhost:3001/trips/${id}`, {
+    fetch(`http://localhost:3001/api/v1/trips/${id}`, {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
       }
     })
   }
