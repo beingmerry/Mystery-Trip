@@ -2,7 +2,6 @@ import React from 'react'
 import Header from './Header'
 import { Outlet } from 'react-router-dom'
 import Footer from './Footer'
-import CurrentUsers from './User/CurrentUsers'
 
 export default function App () {
   const [userLoggedIn, setUserLoggedIn] = React.useState(
@@ -14,7 +13,7 @@ export default function App () {
       <Header userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} />
       <div className="bg-[url('./img/topography.svg')] flex-1 flex-col w-full h-fit align-top justify-center dark:bg-slate-700">
         <Outlet context={[userLoggedIn, setUserLoggedIn]} />
-        <CurrentUsers className='flex' />
+        
       </div>
 
       <Footer classname='fixed' />

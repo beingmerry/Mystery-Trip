@@ -33,7 +33,7 @@ export default function NewTripForm () {
   }
 
   return (
-    <form className='p-4 space-y-6 bg-slate-200 rounded-md' onSubmit={handleSubmit}>
+    <form className='p-4 space-y-6 bg-slate-200 rounded-md' onSubmit={(e) => handleSubmit(e)}>
       <div>
         <label
           className='block text-gray-700 font-bold mb-2'
@@ -115,6 +115,14 @@ export default function NewTripForm () {
           onChange={handleChange}
           placeholder='Enter trip trip_thumbnail'
         />
+        <button
+        type='submit'
+        className='inline-block px-7 py-3 bg-blue-500 text-white font-medium leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full'
+        data-mdb-ripple='true'
+        data-mdb-ripple-color='light'
+      >
+        Create Trip
+      </button>
       </div>
     </form>
   )

@@ -59,7 +59,7 @@ export default function CurrentUsers () {
         className='inline-block px-7 py-3 bg-emerald-500 text-white font-medium leading-snug uppercase rounded shadow-md hover:bg-emerald-700 hover:shadow-lg focus:bg-emerald-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-emerald-800 active:shadow-lg transition duration-150 ease-in-out w-full'
         onClick={() => getUsers()}
       >
-        ⚠️(Testing) Get Fresh Users List
+        👥 Find some friends!
       </button>
       <div className='overflow-auto'>
         <table className='w-full text-sm text-left text-gray-200'>

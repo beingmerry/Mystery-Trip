@@ -1,5 +1,7 @@
 import React from 'react'
 
+import CurrentUsers from './User/CurrentUsers'
+
 // Homepage of the application, ROOT = '/'
 
 export default function Dashboard () {
@@ -81,6 +83,8 @@ export default function Dashboard () {
         </h2>
         <p>Or add new friends</p>
       </div>
+      
+      <CurrentUsers className='flex' />
     </>
   )
 }
