@@ -6,7 +6,7 @@ class CreateTrips < ActiveRecord::Migration[7.0]
       t.string :end_date
       t.string :trip_review
       t.string :trip_thumbnail
-      t.references :user, null: false, foreign_key: true
+      t.references :user, foreign_key: true
 
       t.timestamps
     end

@@ -38,7 +38,7 @@ Initialization (again) at 11:08 EST, 2023-02-10 -- Ben Merryman
 - [x] -- Build basic fetches and interactions for Friday MVP
 - [x] -- Develop Context for User trackign vs prop passing through outlets
   - [x] -- Used OutletContext
-- [ ] -- ADD friend by presentation time
+- [ ] -- ADD friend by presentation time ()
 - [ ] -- 2 roles Trip Taker or Trip Builder
   - [ ] -- Trip builder puts together all the trip parts and event triggers for emails / SMS messages
     - [ ] -- Build in event triggers

@@ -12,9 +12,14 @@ class Api::V1::UsersController < ApplicationController
     render json: { user: UserSerializer.new(@user) }, status: :accepted
   end
 
+  def show
+    @user = User.find(params[:id])
+    render json: { user: LoggedInUserSerializer.new(@user) }, status: :accepted
+  end
+
   # POST /signup, create new user
   def create
-    @user = User.create(user_params.merge(avatar: './src/avatars/avatar_1.png'))
+    @user = User.create(user_params.merge(avatar: assign_random_avatar))
     if @user.valid?
       # Below line for authentication
       @token = encode_token(user_id: @user.id)
@@ -26,8 +31,15 @@ class Api::V1::UsersController < ApplicationController
 
   private
 
+  # assigning random avatar to user at creation
+  def assign_random_avatar
+    avatar_number = rand(1..6) # generate a random number from 1 to 6
+    # './src/avatars/avatar_1.png'
+    "./src/avatars/avatar_#{avatar_number}.png" # construct the file path to the selected avatar
+  end
+
   def user_params
-    # need to add in email if adding on mailer, cell phone if doing sms
-    params.require(:user).permit(:username, :password, :location, :email)
+    # need to add bio back in somewhere on user side (after creation)
+    params.require(:user).permit(:username, :password, :location, :email, :bio)
   end
 end

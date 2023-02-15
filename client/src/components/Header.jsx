@@ -13,11 +13,11 @@ export default function Header ({ userLoggedIn, setUserLoggedIn }) {
         >
           <h1 className='hover:scale-150 '>🔮</h1>
           <div className='md:px-2' />
-          <h2>MysteryTrip</h2>
+          <h2 className='hidden md:block'>MysteryTrip</h2>
         </Link>
       </div>
-      <h1 className='hidden md:block self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>
-        Travel with a surprise!
+      <h1 className='hidden lg:block self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>
+        Travel with a twist!
       </h1>
       <div className='dark:text-slate-100 space-x-4 p-1'>
         {/* ⚠️ Need to find a better way of knowing whether logged in */}

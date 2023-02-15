@@ -4,8 +4,10 @@ class User < ApplicationRecord
   # Handling Friendships and making sure that the relationship is bi-directional
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
+  has_many :trips
 
-  def add_friend(friend)
+  def add_friend(friend_id)
+    friend = User.find(friend_id)
     friends << friend
     friend.friends << self
   end

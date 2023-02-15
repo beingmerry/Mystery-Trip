@@ -27,7 +27,8 @@ export default function CurrentUsers () {
 
   function addFriend (id) {
     const token = localStorage.getItem('jwt')
-    fetch(`http://localhost:3000/api/v1/users/${id}/friends`, {
+    const userId = 1
+    fetch(`http://localhost:3000/api/v1/users/${userId}/add_friend/${id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -68,7 +69,10 @@ export default function CurrentUsers () {
                 Username
               </th>
               <th scope='col' className='px-6 py-3'>
-                Bio
+                Email
+              </th>
+              <th scope='col' className='px-6 py-3'>
+                Location
               </th>
               <th scope='col' className='px-6 py-3'>
                 Add Friend?
@@ -93,7 +97,8 @@ export default function CurrentUsers () {
                   <td className='px-6 py-0 whitespace-nowrap'>
                     {user.username}
                   </td>
-                  <td className='px-6 py-0 whitespace-wrap'>{user.bio}</td>
+                  <td className='px-6 py-0 whitespace-wrap'>{user.email}</td>
+                  <td className='px-6 py-0 whitespace-wrap'>{user.location}</td>
                   <td className='px-6 py-0'>
                     <button onClick={() => addFriend(user.id)}>➕</button>
                   </td>

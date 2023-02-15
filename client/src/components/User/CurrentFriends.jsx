@@ -5,9 +5,9 @@ import React, { useState, useEffect } from 'react'
 export default function CurrentFriends () {
   const [friends, setFriends] = useState([])
 
-  function getFriends () {
+  function getFriends (id) {
     const token = localStorage.getItem('jwt')
-    fetch('http://localhost:3000/api/v1/users', {
+    fetch(`http://localhost:3000/api/v1/users/${id}/friends`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
