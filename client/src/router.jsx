@@ -3,12 +3,20 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from './components/App'
 import NotFound from './components/NotFound'
 import Dashboard from './components/Dashboard'
-import NewTrip from './components/Trip/NewTrip'
-
 import SplashLanding from './components/SplashLanding'
-import TripList from './components/Trip/TripList'
-import Trips from './components/Trip/Trips'
 import ToolsAndTech from './components/ToolsAndTech'
+
+import Trips from './components/Trip/Trips'
+import NewTrip from './components/Trip/NewTrip'
+import TripList from './components/Trip/TripList'
+
+import Days from './components/Days/Days'
+import NewDay from './components/Days/NewDay'
+import DayList from './components/Days/DayList'
+
+import Activities from './components/Activities/Activities'
+import NewActivity from './components/Activities/NewActivity'
+import ActivityList from './components/Activities/ActivityList'
 
 const router = createBrowserRouter([
   {
@@ -31,6 +39,34 @@ const router = createBrowserRouter([
           {
             path: 'trip-list',
             element: <TripList />
+          }
+        ]
+      },
+      {
+        path: 'days',
+        element: <Days />,
+        children: [
+          {
+            path: 'new-day',
+            element: <NewDay />
+          },
+          {
+            path: 'day-list',
+            element: <DayList />
+          }
+        ]
+      },
+      {
+        path: 'activities',
+        element: <Activities />,
+        children: [
+          {
+            path: 'new-activity',
+            element: <NewActivity />
+          },
+          {
+            path: 'Activity-list',
+            element: <ActivityList />
           }
         ]
       },
