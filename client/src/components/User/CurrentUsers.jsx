@@ -28,7 +28,7 @@ export default function CurrentUsers () {
   function addFriend (id) {
     const token = localStorage.getItem('jwt')
     const userId = 1
-    fetch(`http://localhost:3000/api/v1/users/${userId}/add_friend/${id}`, {
+    fetch(`http://localhost:3000/api/v1/users/${userId}/add_friend`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

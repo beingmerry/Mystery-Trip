@@ -2,8 +2,8 @@ import React from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 
 export default function Trips () {
-  const location = useLocation()
-  console.log(location)
+  // const location = useLocation()
+  // console.log(location)
   return (
     <div className='container justify-center px-6 py-2 h-auto w-auto'>
       {/* <---- Trips ----> */}

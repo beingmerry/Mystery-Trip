@@ -52,6 +52,27 @@ export default function Dashboard () {
     })
   }, [])
 
+  React.useEffect(() => {
+    fetch('http://localhost:3000/api/v1/friends', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    }).then(res => {
+      if (res.ok) {
+        res.json().then(data => {
+          setTrips(data)
+          console.log(data)
+        })
+      } else {
+        res.json().then(errors => {
+          console.log(errors)
+        })
+      }
+    })
+  }, [])
+
   return (
     <>
       {openGreeting && (
@@ -83,7 +104,7 @@ export default function Dashboard () {
         </h2>
         <p>Or add new friends</p>
       </div>
-      
+
       <CurrentUsers className='flex' />
     </>
   )

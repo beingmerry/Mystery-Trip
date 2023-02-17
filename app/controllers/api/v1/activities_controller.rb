@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-  before_action :set_activity, only: %i[ show update destroy ]
+  before_action :set_activity, only: %i[show update destroy]
 
   # GET /activities
   def index
@@ -39,13 +39,14 @@ class ActivitiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_activity
-      @activity = Activity.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def activity_params
-      params.fetch(:activity, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_activity
+    @activity = Activity.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def activity_params
+    params.fetch(:activity, {})
+  end
 end

@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
   # GET /api/v1/users, may want to eliminate or reduce to friends
   # ⚠️ only ADMIN role where once authorized, can view all users, add PARTICIPANT role
   def index
-    @users = User.all
+    @users = User.where.not(id: current_user.id)
     render json: { users: @users }, status: :ok
   end
 
@@ -15,6 +15,13 @@ class Api::V1::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     render json: { user: LoggedInUserSerializer.new(@user) }, status: :accepted
+  end
+
+  # Extension of show, find two users, mutually friend each other (no confirm)
+  def add_friend
+    @user = User.find(params[:id])
+    @user.add_friend(params[:friend_id])
+    render json: { user: @user, serializer: UserFriendSerializer }, status: :accepted
   end
 
   # POST /signup, create new user

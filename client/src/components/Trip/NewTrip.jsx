@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 
+const tripDataDefault = {
+  destination: '',
+  trip_review: '',
+  start_date: '',
+  end_date: '',
+  trip_thumbnail: ''
+}
+
 export default function NewTripForm () {
-  const [tripData, setTripData] = useState({
-    destination: '',
-    trip_review: '',
-    start_date: '',
-    end_date: '',
-    trip_thumbnail: ''
-  })
+  const [tripData, setTripData] = useState(tripDataDefault)
 
   const handleChange = event => {
     const { name, value } = event.target
@@ -20,20 +22,32 @@ export default function NewTripForm () {
   const handleSubmit = event => {
     event.preventDefault()
 
-    fetch('/api/trips', {
+    fetch('http://localhost:3000/api/v1/trips', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
       },
       body: JSON.stringify(tripData)
     })
-      .then(response => response.json())
+      .then(res => {
+        if (res.ok) {
+          res.json().then(data => {
+            console.log(data)
+            setTripData(tripDataDefault)
+          })
+        }
+      })
       .then(data => console.log(data))
       .catch(error => console.log(error))
   }
 
   return (
-    <form className='p-4 space-y-6 bg-slate-200 rounded-md' onSubmit={(e) => handleSubmit(e)}>
+    <form
+      className='p-4 space-y-6 bg-slate-200 rounded-md'
+      onSubmit={e => handleSubmit(e)}
+    >
       <div>
         <label
           className='block text-gray-700 font-bold mb-2'
@@ -52,14 +66,17 @@ export default function NewTripForm () {
         />
       </div>
       <div>
-        <label className='block text-gray-700 font-bold mb-2' htmlFor='review'>
+        <label
+          className='block text-gray-700 font-bold mb-2'
+          htmlFor='trip_review'
+        >
           Trip Review
         </label>
         <textarea
           className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-          id='review'
-          name='review'
-          value={tripData.review}
+          id='trip_review'
+          name='trip_review'
+          value={tripData.trip_review}
           onChange={handleChange}
           placeholder='Enter trip review'
         />
@@ -116,13 +133,13 @@ export default function NewTripForm () {
           placeholder='Enter trip trip_thumbnail'
         />
         <button
-        type='submit'
-        className='inline-block px-7 py-3 bg-blue-500 text-white font-medium leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full'
-        data-mdb-ripple='true'
-        data-mdb-ripple-color='light'
-      >
-        Create Trip
-      </button>
+          type='submit'
+          className='inline-block px-7 py-3 bg-blue-500 text-white font-medium leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full'
+          data-mdb-ripple='true'
+          data-mdb-ripple-color='light'
+        >
+          Create Trip
+        </button>
       </div>
     </form>
   )

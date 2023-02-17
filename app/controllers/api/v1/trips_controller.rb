@@ -19,8 +19,9 @@ class Api::V1::TripsController < ApplicationController
     render json: @trips
   end
 
-  def delete
+  def destroy
     @trip = Trip.find(params[:id])
+    @trip.destroy
     head :no_content
   end
 
@@ -33,6 +34,7 @@ class Api::V1::TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:trip_id, :user_id, :start_date, :end_date, :destination)
+    params.require(:trip).permit(:trip_id, :user_id, :start_date, :end_date, :trip_thumbnail, :trip_review,
+                                 :destination)
   end
 end

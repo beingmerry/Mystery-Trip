@@ -31,7 +31,7 @@ export default function LoginForm () {
       if (r.ok) {
         r.json().then(data => {
           localStorage.setItem('jwt', data.jwt)
-          setUserLoggedIn(true)
+          setUserLoggedIn(data.user)
           navigate('/dashboard')
         })
       } else {
