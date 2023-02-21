@@ -45,4 +45,3 @@ User.second.add_friend(User.fourth.id)
 
 # All done!
 puts "🛬 Seeding complete!"
-
